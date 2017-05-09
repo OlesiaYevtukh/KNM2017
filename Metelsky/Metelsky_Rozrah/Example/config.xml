@@ -1,0 +1,39 @@
+<experiment>
+<process alg<experiment>
+<process algorithm-type="net.sf.jclec.algorithm.classic.SGE">
+<population-size>200</population-size>
+<max-of-generations>100</max-of-generations>
+<rand-gen-factory type="net.sf.jclec.util.random.RanecuFactory" seed="234567895"/>
+<species type="net.sf.jclec.exprtree.ExprTreeIndividualSpecies" number-of-trees="1">
+<expression-tree>
+<min-tree-size>3</min-tree-size>
+<max-tree-size>25</max-tree-size>
+<root-type>java.lang.Double</root-type>
+<terminals>
+<terminal class="tutorial.symreg.X"/>
+</terminals>
+<functions>
+<function class="tutorial.symreg.Add"/>
+<function class="tutorial.symreg.Sub"/>
+<function class="tutorial.symreg.Mul"/>
+</functions>
+</expression-tree>
+</species>
+<evaluator type="tutorial.symreg.SymregEvaluator"/>
+<provider type="net.sf.jclec.exprtree.ExprTreeCreator"/>
+<parents-selector type="net.sf.jclec.selector.TournamentSelector" tournament-size="2"/>
+<recombinator type="net.sf.jclec.exprtree.ExprTreeRecombinator" rec-prob="0.8">
+<base-op type="net.sf.jclec.exprtree.rec.SubtreeCrossover" />
+</recombinator>
+<mutator type="net.sf.jclec.exprtree.ExprTreeMutator" mut-prob="0.1">
+<base-op type="net.sf.jclec.exprtree.mut.SubtreeMutator" />
+</mutator>
+ <listener type="net.sf.jclec.listener.PopulationReporter">
+ <report-title>SymReg</report-title>
+ <report-frequency>1</report-frequency>
+ <report-on-console>true</report-on-console>
+ <report-on-file>false</report-on-file>
+ <save-complete-population>false</save-complete-population>
+ </listener>
+ </process>
+ </experiment>
